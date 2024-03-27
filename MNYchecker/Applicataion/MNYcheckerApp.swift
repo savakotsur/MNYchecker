@@ -11,7 +11,7 @@ import SwiftUI
 struct MNYcheckerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SpendsView()
         }
     }
 }
