@@ -51,9 +51,8 @@
 		E29A672A2BA89488001CA2C1 /* MNYchecker */ = {
 			isa = PBXGroup;
 			children = (
-				E29A672B2BA89488001CA2C1 /* MNYcheckerApp.swift */,
-				E29A672D2BA89488001CA2C1 /* ContentView.swift */,
-				E29A672F2BA8948A001CA2C1 /* Assets.xcassets */,
+				E29A673C2BAB4ADF001CA2C1 /* Applicataion */,
+				E29A673B2BAB4A91001CA2C1 /* Resources */,
 				E29A67312BA8948A001CA2C1 /* Preview Content */,
 			);
 			path = MNYchecker;
@@ -65,6 +64,23 @@
 				E29A67322BA8948A001CA2C1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E29A673B2BAB4A91001CA2C1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E29A672F2BA8948A001CA2C1 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E29A673C2BAB4ADF001CA2C1 /* Applicataion */ = {
+			isa = PBXGroup;
+			children = (
+				E29A672B2BA89488001CA2C1 /* MNYcheckerApp.swift */,
+				E29A672D2BA89488001CA2C1 /* ContentView.swift */,
+			);
+			path = Applicataion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +286,7 @@
 				DEVELOPMENT_TEAM = P8AS9474FG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +316,7 @@
 				DEVELOPMENT_TEAM = P8AS9474FG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
