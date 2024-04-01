@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SpendsView: View {
     
+    @StateObject var spendsVM = SpendsViewModel();
     @State var isAddingSpend = false
     @State var isSettingsOpened = false
     
@@ -32,8 +33,7 @@ struct SpendsView: View {
                     }
                     .labelStyle(.iconOnly)
                 }
-                .padding(.horizontal, 16.0)
-                .padding(.vertical, 1.0)
+                .frame(width: screenSize.width / 6.0, height: screenSize.height / 24.0)
                 .background(Color("ElementsColor"))
                 .cornerRadius(100)
                 Button(action: printSmth) {
@@ -45,14 +45,31 @@ struct SpendsView: View {
                     }
                     .labelStyle(.iconOnly)
                 }
-                .padding(.horizontal, 16.0)
-                .padding(.vertical, 4.0)
+                .frame(width: screenSize.width / 6.0, height: screenSize.height / 24.0)
                 .background(Color("ElementsColor"))
                 .cornerRadius(100)
             }
-            .padding()
+            .padding(10.0)
             
-            Spacer()
+            if spendsVM.spends.isEmpty {
+                ProgressView()
+            }
+            else {
+                List {
+                    ForEach(spendsVM.spends) { spend in
+                            HStack {
+                                VStack {
+                                    Text(spend.title)
+                                    Text(spend.id)
+                                    Text(String(spend.value))
+                                }
+                                Spacer()
+                                Text("ADD DATE")
+                            }
+                    }
+                }.listStyle(.automatic)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
         }
         .padding(.top, 40)
     }

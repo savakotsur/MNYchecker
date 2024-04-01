@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E2777B902BB4CFFF005B21D3 /* AddSpendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2777B8F2BB4CFFF005B21D3 /* AddSpendView.swift */; };
+		E2777B932BB74908005B21D3 /* SpendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2777B922BB74908005B21D3 /* SpendModel.swift */; };
+		E2777B972BB74C9E005B21D3 /* SpendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2777B962BB74C9E005B21D3 /* SpendsViewModel.swift */; };
+		E2777B992BBB68D0005B21D3 /* Spends.json in Resources */ = {isa = PBXBuildFile; fileRef = E2777B982BBB68D0005B21D3 /* Spends.json */; };
 		E29A672C2BA89488001CA2C1 /* MNYcheckerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A672B2BA89488001CA2C1 /* MNYcheckerApp.swift */; };
 		E29A672E2BA89488001CA2C1 /* SpendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29A672D2BA89488001CA2C1 /* SpendsView.swift */; };
 		E29A67302BA8948A001CA2C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E29A672F2BA8948A001CA2C1 /* Assets.xcassets */; };
@@ -16,6 +19,9 @@
 
 /* Begin PBXFileReference section */
 		E2777B8F2BB4CFFF005B21D3 /* AddSpendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpendView.swift; sourceTree = "<group>"; };
+		E2777B922BB74908005B21D3 /* SpendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendModel.swift; sourceTree = "<group>"; };
+		E2777B962BB74C9E005B21D3 /* SpendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpendsViewModel.swift; path = MNYchecker/Applicataion/ViewModels/SpendsViewModel.swift; sourceTree = SOURCE_ROOT; };
+		E2777B982BBB68D0005B21D3 /* Spends.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Spends.json; path = ../../../../../Downloads/Spends.json; sourceTree = "<group>"; };
 		E29A67282BA89488001CA2C1 /* MNYchecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MNYchecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29A672B2BA89488001CA2C1 /* MNYcheckerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNYcheckerApp.swift; sourceTree = "<group>"; };
 		E29A672D2BA89488001CA2C1 /* SpendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendsView.swift; sourceTree = "<group>"; };
@@ -41,6 +47,23 @@
 				E2777B8F2BB4CFFF005B21D3 /* AddSpendView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E2777B912BB74638005B21D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E2777B922BB74908005B21D3 /* SpendModel.swift */,
+				E2777B982BBB68D0005B21D3 /* Spends.json */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E2777B952BB74C81005B21D3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E2777B962BB74C9E005B21D3 /* SpendsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		E29A671F2BA89488001CA2C1 = {
@@ -90,6 +113,8 @@
 			children = (
 				E29A672B2BA89488001CA2C1 /* MNYcheckerApp.swift */,
 				E2777B8C2BB4CF5D005B21D3 /* Views */,
+				E2777B952BB74C81005B21D3 /* ViewModels */,
+				E2777B912BB74638005B21D3 /* Model */,
 			);
 			path = Applicataion;
 			sourceTree = "<group>";
@@ -153,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E29A67332BA8948A001CA2C1 /* Preview Assets.xcassets in Resources */,
+				E2777B992BBB68D0005B21D3 /* Spends.json in Resources */,
 				E29A67302BA8948A001CA2C1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,6 +190,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2777B972BB74C9E005B21D3 /* SpendsViewModel.swift in Sources */,
+				E2777B932BB74908005B21D3 /* SpendModel.swift in Sources */,
 				E29A672E2BA89488001CA2C1 /* SpendsView.swift in Sources */,
 				E29A672C2BA89488001CA2C1 /* MNYcheckerApp.swift in Sources */,
 				E2777B902BB4CFFF005B21D3 /* AddSpendView.swift in Sources */,
