@@ -1,14 +1,23 @@
 [
     {
-        "id" : "1",
         "title" : "PC Parts",
         "value" : 20.1,
+        "category" : "Магазины",
+        "date" : "2024-04-02",
         "description" : "Bought 2 coolers in DNS"
     },
     {
-        "id" : "2",
         "title" : "Food",
         "value" : 13.1,
+        "category" : "Еда",
+        "date" : "2024-04-03",
         "description" : "Bought Carbonara"
+    },
+    {
+        "title" : "Бронь отеля",
+        "value" : 293.1,
+        "category" : "Entartainment",
+        "date" : "2024-04-06",
+        "description" : "Забронировал отель на букинге в Ереване на неделю"
     }
 ]

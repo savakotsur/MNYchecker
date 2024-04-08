@@ -12,6 +12,7 @@ struct SpendsView: View {
     @StateObject var spendsVM = SpendsViewModel();
     @State var isAddingSpend = false
     @State var isSettingsOpened = false
+    @State var selectedSpend: SpendModel?
     
     var body: some View {
         VStack {
@@ -49,39 +50,44 @@ struct SpendsView: View {
                 .background(Color("ElementsColor"))
                 .cornerRadius(100)
             }
-            .padding(10.0)
-            
-            if spendsVM.spends.isEmpty {
-                ProgressView()
-            }
-            else {
-                List {
-                    ForEach(spendsVM.spends) { spend in
-                            HStack {
-                                VStack {
-                                    Text(spend.title)
-                                    Text(spend.id)
-                                    Text(String(spend.value))
-                                }
-                                Spacer()
-                                Text("ADD DATE")
-                            }
+            .padding(.vertical, 5.0)
+            .padding(.horizontal, 20)
+            //            NavigationView {
+            List {
+                if spendsVM.spends.isEmpty {
+                    HStack (alignment: .center) {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
                     }
-                }.listStyle(.automatic)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
+                    .listRowSeparator(.hidden)
+                }
+                ForEach(spendsVM.spends) { spend in
+                    //                        NavigationLink(destination: SpendDetails(detail: spendsVM, id: spend.id)) {
+                    Button (action: {
+                        selectedSpend = spend
+                    }) {
+                        SpendDesign(title: spend.title, value: spend.value, category: spend.category, date: spend.date)
+                    }
+                    //                        }
+                }
+                .listRowSeparator(.hidden)
+            }.listStyle(.inset)
+                .padding(.top, 40)
+                .sheet(item: $selectedSpend) { spend in
+                    SpendDetails(spend: spend)
+                }
         }
-        .padding(.top, 40)
     }
 }
-
-//DELETE THIS
-func printSmth() {
-    print("Wow")
-}
-
-struct SpendsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SpendsView()
+    
+    //DELETE THIS
+    func printSmth() {
+        print("Wow")
     }
-}
+    
+    struct SpendsView_Previews: PreviewProvider {
+        static var previews: some View {
+            SpendsView()
+        }
+    }

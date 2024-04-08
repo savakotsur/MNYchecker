@@ -8,6 +8,7 @@
 import Foundation
 
 class SpendsViewModel: ObservableObject {
+    
     @Published var spends: [SpendModel] = []
     
     init() {
@@ -17,13 +18,19 @@ class SpendsViewModel: ObservableObject {
     func getData() {
         guard let data = self.getJSONData() else { return }
         do {
-            let spends = try JSONDecoder().decode([SpendModel].self, from: data)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(dateFormatter)
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            let spends = try decoder.decode([SpendModel].self, from: data)
             DispatchQueue.main.async {
                 self.spends = spends
             }
         }
         catch {
-            print("Error occured 1: \(error)")
+            print("Error occured 2: \(error)")
         }
     }
     

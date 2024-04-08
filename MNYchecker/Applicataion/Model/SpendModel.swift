@@ -8,21 +8,28 @@
 import Foundation
 
 struct SpendModel: Codable, Identifiable {
-    var id: String
+    var id = UUID()
     var title: String
     var value: Double
+    var category: String
+    var date: Date
     var description: String
     
-//    enum CodingKeys: String, CodingKey {
-//        case title
-//        case value
-//        case description
-//    }
+    private enum CodingKeys: String, CodingKey {
+        case title
+        case value
+        case category
+        case date
+        case description
+    }
 //    
 //    init(from decoder: Decoder) throws {
 //        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        self.id = try container.decode(String.self, forKey: .id)
 //        self.title = try container.decode(String.self, forKey: .title)
 //        self.value = try container.decode(Double.self, forKey: .value)
+//        self.category = try container.decode(String.self, forKey: .category)
+//        self.date = try container.decode(Date.self, forKey: .date)
 //        self.description = try container.decode(String.self, forKey: .description)
 //    }
 //    
