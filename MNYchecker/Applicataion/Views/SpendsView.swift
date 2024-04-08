@@ -17,15 +17,20 @@ struct SpendsView: View {
     var body: some View {
         VStack {
             
+            //Diagram with spends -- NOT READY YET
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
+                .padding(.top, 30)
             Text("Здесь будет диаграмма")
             
-            //Buttons "Settings" and "Add"
+            //Buttons "Settings" and "Add" -- MUST BE ON COMPONENTS
             HStack {
                 Spacer()
-                Button(action: printSmth) {
+                Button(action: {
+                    isSettingsOpened.toggle()
+                })
+                {
                     Label {
                         Text("Settings")
                     } icon: {
@@ -37,7 +42,14 @@ struct SpendsView: View {
                 .frame(width: screenSize.width / 6.0, height: screenSize.height / 24.0)
                 .background(Color("ElementsColor"))
                 .cornerRadius(100)
-                Button(action: printSmth) {
+                .sheet(isPresented: $isSettingsOpened) {
+                    SettingsView()
+                }
+                
+                Button(action: {
+                    isAddingSpend.toggle()
+                })
+                {
                     Label {
                         Text("Add Spend")
                     } icon: {
@@ -52,39 +64,37 @@ struct SpendsView: View {
             }
             .padding(.vertical, 5.0)
             .padding(.horizontal, 20)
-            //            NavigationView {
+            .sheet(isPresented: $isAddingSpend) {
+                AddSpendView()
+            }
+            
+            //List with all spends
             List {
                 if spendsVM.spends.isEmpty {
                     HStack (alignment: .center) {
                         Spacer()
                         ProgressView()
-                        Spacer()
+                            .frame(minWidth: 350, maxWidth: 500, minHeight: 570, maxHeight: 1000)
+                            .background(Color("ElementsColor"))
+                            .cornerRadius(20)
                     }
                     .listRowSeparator(.hidden)
                 }
                 ForEach(spendsVM.spends) { spend in
-                    //                        NavigationLink(destination: SpendDetails(detail: spendsVM, id: spend.id)) {
                     Button (action: {
                         selectedSpend = spend
                     }) {
                         SpendDesign(title: spend.title, value: spend.value, category: spend.category, date: spend.date)
                     }
-                    //                        }
                 }
                 .listRowSeparator(.hidden)
             }.listStyle(.inset)
-                .padding(.top, 40)
                 .sheet(item: $selectedSpend) { spend in
                     SpendDetails(spend: spend)
                 }
         }
     }
 }
-    
-    //DELETE THIS
-    func printSmth() {
-        print("Wow")
-    }
     
     struct SpendsView_Previews: PreviewProvider {
         static var previews: some View {
