@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SpendDetails: View {
     
+    @Environment(\.dismiss) var dismiss
+    @StateObject var spendsVM: SpendsViewModel
     var spend : SpendModel
     
     var body: some View {
@@ -30,6 +32,26 @@ struct SpendDetails: View {
                 .background(Color("ElementsColor"))
                 .cornerRadius(20)
                 .padding(15)
+            HStack {
+                Spacer()
+                Button(action: {
+                    spendsVM.deleteSpend(spend)
+                    dismiss()
+                }) {
+                Label {
+                    Text("Delete")
+                } icon: {
+                    Image(systemName: "trash")
+                        .imageScale(.large)
+                        .foregroundColor(Color.red)
+                }
+                .labelStyle(.iconOnly)
+            }
+            .frame(width: screenSize.width / 6.0, height: screenSize.height / 24.0)
+            .background(Color("ElementsColor"))
+            .cornerRadius(100)
+            .padding(.horizontal, 20)
+            }
         }
     }
 }

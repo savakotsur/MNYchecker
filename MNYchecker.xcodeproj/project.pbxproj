@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E2777B932BB74908005B21D3 /* SpendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2777B922BB74908005B21D3 /* SpendModel.swift */; };
 		E2777B972BB74C9E005B21D3 /* SpendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2777B962BB74C9E005B21D3 /* SpendsViewModel.swift */; };
-		E2777B9B2BBB6F86005B21D3 /* Spends.json in Resources */ = {isa = PBXBuildFile; fileRef = E2777B9A2BBB6F86005B21D3 /* Spends.json */; };
 		E28E7DA22BBD9C9C00964903 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28E7DA12BBD9C9C00964903 /* SettingsView.swift */; };
 		E28E7DA72BBF3E4C00964903 /* SpendDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28E7DA62BBF3E4C00964903 /* SpendDesign.swift */; };
 		E28E7DA92BC1C9D600964903 /* SpendDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28E7DA82BC1C9D600964903 /* SpendDetails.swift */; };
@@ -19,12 +18,13 @@
 		E29A67332BA8948A001CA2C1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E29A67322BA8948A001CA2C1 /* Preview Assets.xcassets */; };
 		E2D30CC92BE6EF64009F62C3 /* AddSpendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D30CC82BE6EF64009F62C3 /* AddSpendView.swift */; };
 		E2D30CD12BE6F2EB009F62C3 /* TextFieldDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D30CD02BE6F2EB009F62C3 /* TextFieldDesign.swift */; };
+		E2E1269C2BED517F00A33EEE /* SpendsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2E1269A2BED517F00A33EEE /* SpendsModel.xcdatamodeld */; };
+		E2E1269E2BED59D600A33EEE /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E1269D2BED59D600A33EEE /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E2777B922BB74908005B21D3 /* SpendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendModel.swift; sourceTree = "<group>"; };
 		E2777B962BB74C9E005B21D3 /* SpendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpendsViewModel.swift; path = MNYchecker/Applicataion/ViewModels/SpendsViewModel.swift; sourceTree = SOURCE_ROOT; };
-		E2777B9A2BBB6F86005B21D3 /* Spends.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Spends.json; sourceTree = "<group>"; };
 		E28E7DA12BBD9C9C00964903 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E28E7DA62BBF3E4C00964903 /* SpendDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendDesign.swift; sourceTree = "<group>"; };
 		E28E7DA82BC1C9D600964903 /* SpendDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendDetails.swift; sourceTree = "<group>"; };
@@ -35,6 +35,8 @@
 		E29A67322BA8948A001CA2C1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E2D30CC82BE6EF64009F62C3 /* AddSpendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSpendView.swift; sourceTree = "<group>"; };
 		E2D30CD02BE6F2EB009F62C3 /* TextFieldDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDesign.swift; sourceTree = "<group>"; };
+		E2E1269B2BED517F00A33EEE /* SpendModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpendModel.xcdatamodel; sourceTree = "<group>"; };
+		E2E1269D2BED59D600A33EEE /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +65,9 @@
 		E2777B912BB74638005B21D3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E2E1269A2BED517F00A33EEE /* SpendsModel.xcdatamodeld */,
 				E2777B922BB74908005B21D3 /* SpendModel.swift */,
-				E2777B9A2BBB6F86005B21D3 /* Spends.json */,
+				E2E1269D2BED59D600A33EEE /* CoreDataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -199,7 +202,6 @@
 			files = (
 				E29A67332BA8948A001CA2C1 /* Preview Assets.xcassets in Resources */,
 				E29A67302BA8948A001CA2C1 /* Assets.xcassets in Resources */,
-				E2777B9B2BBB6F86005B21D3 /* Spends.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,9 +218,11 @@
 				E2D30CC92BE6EF64009F62C3 /* AddSpendView.swift in Sources */,
 				E28E7DA72BBF3E4C00964903 /* SpendDesign.swift in Sources */,
 				E28E7DA22BBD9C9C00964903 /* SettingsView.swift in Sources */,
+				E2E1269C2BED517F00A33EEE /* SpendsModel.xcdatamodeld in Sources */,
 				E2D30CD12BE6F2EB009F62C3 /* TextFieldDesign.swift in Sources */,
 				E28E7DA92BC1C9D600964903 /* SpendDetails.swift in Sources */,
 				E29A672C2BA89488001CA2C1 /* MNYcheckerApp.swift in Sources */,
+				E2E1269E2BED59D600A33EEE /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +427,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E2E1269A2BED517F00A33EEE /* SpendsModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E2E1269B2BED517F00A33EEE /* SpendModel.xcdatamodel */,
+			);
+			currentVersion = E2E1269B2BED517F00A33EEE /* SpendModel.xcdatamodel */;
+			path = SpendsModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E29A67202BA89488001CA2C1 /* Project object */;
 }

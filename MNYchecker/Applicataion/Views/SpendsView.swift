@@ -65,7 +65,7 @@ struct SpendsView: View {
             .padding(.vertical, 5.0)
             .padding(.horizontal, 20)
             .sheet(isPresented: $isAddingSpend) {
-                AddSpendView()
+                AddSpendView(spendsVM: spendsVM)
             }
             
             //List with all spends
@@ -90,7 +90,7 @@ struct SpendsView: View {
                 .listRowSeparator(.hidden)
             }.listStyle(.inset)
                 .sheet(item: $selectedSpend) { spend in
-                    SpendDetails(spend: spend)
+                    SpendDetails(spendsVM: spendsVM, spend: spend)
                 }
         }
     }

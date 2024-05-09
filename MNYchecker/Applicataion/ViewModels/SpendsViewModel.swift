@@ -6,43 +6,66 @@
 //
 
 import Foundation
+import CoreData
 
 class SpendsViewModel: ObservableObject {
+    
+    private let context = PersistenceController.shared.container.viewContext
     
     @Published var spends: [SpendModel] = []
     
     init() {
-        getData()
+        loadData()
     }
     
-    func getData() {
-        guard let data = self.getJSONData() else { return }
+    func loadData() {
+        let fetchRequest: NSFetchRequest<SpendEntity> = SpendEntity.fetchRequest()
         do {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .formatted(dateFormatter)
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            let spends = try decoder.decode([SpendModel].self, from: data)
-            DispatchQueue.main.async {
-                self.spends = spends
+            let results = try context.fetch(fetchRequest)
+            self.spends = results.map { entity in
+                return SpendModel(id: entity.id ?? UUID(),
+                                  title: entity.title ?? "",
+                                  value: entity.value,
+                                  category: entity.category ?? "",
+                                  date: entity.date ?? Date(),
+                                  description: entity.descriptionn ?? "")
             }
-        }
-        catch {
-            print("Error occured 2: \(error)")
-        }
-    }
-    
-    func getJSONData() -> Data? {
-        guard let fileURL = Bundle.main.url(forResource: "Spends.json", withExtension: nil) else { return nil }
-        do {
-            let jsonData = try Data(contentsOf: fileURL)
-            return jsonData
         } catch {
-            print("Error occured 1: \(error)")
+            print("Error fetching data: \(error)")
         }
-        return nil
     }
     
+    func insertSpend(_ newSpend: SpendModel) {
+        let spendEntity = SpendEntity(context: context)
+        spendEntity.value = newSpend.value
+        spendEntity.date = newSpend.date
+        spendEntity.descriptionn = newSpend.description
+        spendEntity.category = newSpend.category
+        spendEntity.title = newSpend.title
+        
+        do {
+            try context.save()
+            print("Spend saved successfully.")
+            loadData()
+        } catch {
+            print("Error saving spend: \(error)")
+        }
+    }
+    
+    func deleteSpend(_ spendToDelete: SpendModel) {
+        let fetchRequest: NSFetchRequest<SpendEntity> = SpendEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "date == %@", spendToDelete.date as NSDate)
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let entityToDelete = results.first {
+                context.delete(entityToDelete)
+                try context.save()
+                print("Spend deleted successfully.")
+                loadData()
+            }
+        } catch {
+            print("Error deleting spend: \(error)")
+        }
+    }
 }
