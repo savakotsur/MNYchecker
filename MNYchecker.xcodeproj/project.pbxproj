@@ -20,6 +20,7 @@
 		E2D30CD12BE6F2EB009F62C3 /* TextFieldDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D30CD02BE6F2EB009F62C3 /* TextFieldDesign.swift */; };
 		E2E1269C2BED517F00A33EEE /* SpendsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2E1269A2BED517F00A33EEE /* SpendsModel.xcdatamodeld */; };
 		E2E1269E2BED59D600A33EEE /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E1269D2BED59D600A33EEE /* CoreDataManager.swift */; };
+		E2E126AE2BF4FBD300A33EEE /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E126AD2BF4FBD300A33EEE /* DonutChart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		E2D30CD02BE6F2EB009F62C3 /* TextFieldDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDesign.swift; sourceTree = "<group>"; };
 		E2E1269B2BED517F00A33EEE /* SpendModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpendModel.xcdatamodel; sourceTree = "<group>"; };
 		E2E1269D2BED59D600A33EEE /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		E2E126AD2BF4FBD300A33EEE /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			children = (
 				E2D30CD02BE6F2EB009F62C3 /* TextFieldDesign.swift */,
 				E28E7DA62BBF3E4C00964903 /* SpendDesign.swift */,
+				E2E126AD2BF4FBD300A33EEE /* DonutChart.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			files = (
 				E2777B972BB74C9E005B21D3 /* SpendsViewModel.swift in Sources */,
 				E2777B932BB74908005B21D3 /* SpendModel.swift in Sources */,
+				E2E126AE2BF4FBD300A33EEE /* DonutChart.swift in Sources */,
 				E29A672E2BA89488001CA2C1 /* SpendsView.swift in Sources */,
 				E2D30CC92BE6EF64009F62C3 /* AddSpendView.swift in Sources */,
 				E28E7DA72BBF3E4C00964903 /* SpendDesign.swift in Sources */,

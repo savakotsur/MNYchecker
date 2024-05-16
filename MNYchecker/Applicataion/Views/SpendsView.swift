@@ -18,11 +18,7 @@ struct SpendsView: View {
         VStack {
             
             //Diagram with spends -- NOT READY YET
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-                .padding(.top, 30)
-            Text("Здесь будет диаграмма")
+            DonutChart(categories: spendsVM.spendCategories)
             
             //Buttons "Settings" and "Add" -- MUST BE ON COMPONENTS
             HStack {
@@ -62,7 +58,7 @@ struct SpendsView: View {
                 .background(Color("ElementsColor"))
                 .cornerRadius(100)
             }
-            .padding(.vertical, 5.0)
+            .padding(.top, -80)
             .padding(.horizontal, 20)
             .sheet(isPresented: $isAddingSpend) {
                 AddSpendView(spendsVM: spendsVM)
@@ -89,6 +85,7 @@ struct SpendsView: View {
                 }
                 .listRowSeparator(.hidden)
             }.listStyle(.inset)
+                .padding(.top, -40)
                 .sheet(item: $selectedSpend) { spend in
                     SpendDetails(spendsVM: spendsVM, spend: spend)
                 }

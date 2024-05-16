@@ -68,4 +68,9 @@ class SpendsViewModel: ObservableObject {
             print("Error deleting spend: \(error)")
         }
     }
+    
+    var spendCategories: [(category: String, value: Double)] {
+        let categoryValues = Dictionary(grouping: spends, by: { $0.category }).mapValues { $0.reduce(0, { $0 + $1.value }) }
+        return categoryValues.sorted { $0.value > $1.value }.map { ($0.key, $0.value) }
+    }
 }
