@@ -15,8 +15,9 @@ struct SpendDetails: View {
     
     var body: some View {
         VStack (alignment: .center) {
-            HStack (alignment: .top) {
-                Image(systemName: "gear")
+            HStack (alignment: .center) {
+                Image(systemName: spend.category.icon)
+                    .foregroundColor(Color(spend.category.color))
                     .imageScale(.large)
                 VStack (alignment: .leading) {
                     Text(spend.title)

@@ -13,9 +13,11 @@ class SpendsViewModel: ObservableObject {
     private let context = PersistenceController.shared.container.viewContext
     
     @Published var spends: [SpendModel] = []
+    @Published var categories: [CategoryModel] = []
     
     init() {
         loadData()
+        loadCategories()
     }
     
     func loadData() {
@@ -26,9 +28,28 @@ class SpendsViewModel: ObservableObject {
                 return SpendModel(id: entity.id ?? UUID(),
                                   title: entity.title ?? "",
                                   value: entity.value,
-                                  category: entity.category ?? "",
+                                  category: CategoryModel(id: entity.category?.id ?? UUID(),
+                                                          name: entity.category?.name ?? "",
+                                                          color: entity.category?.color ?? "",
+                                                          icon: entity.category?.icon ?? ""),
                                   date: entity.date ?? Date(),
                                   description: entity.descriptionn ?? "")
+            }
+        } catch {
+            print("Error fetching data: \(error)")
+        }
+        self.spends.sort { $0.date > $1.date }
+    }
+    
+    func loadCategories() {
+        let fetchRequest: NSFetchRequest<CategoryEntity> = CategoryEntity.fetchRequest()
+        do {
+            let results = try context.fetch(fetchRequest)
+            self.categories = results.map { entity in
+                return CategoryModel(id: entity.id ?? UUID(),
+                                     name: entity.name ?? "",
+                                     color: entity.color ?? "",
+                                     icon: entity.icon ?? "")
             }
         } catch {
             print("Error fetching data: \(error)")
@@ -37,16 +58,23 @@ class SpendsViewModel: ObservableObject {
     
     func insertSpend(_ newSpend: SpendModel) {
         let spendEntity = SpendEntity(context: context)
+        spendEntity.id = UUID()
+        spendEntity.title = newSpend.title
         spendEntity.value = newSpend.value
         spendEntity.date = newSpend.date
         spendEntity.descriptionn = newSpend.description
-        spendEntity.category = newSpend.category
-        spendEntity.title = newSpend.title
+        
+        let categoryFetchRequest: NSFetchRequest<CategoryEntity> = CategoryEntity.fetchRequest()
+        categoryFetchRequest.predicate = NSPredicate(format: "name == %@", newSpend.category.name)
         
         do {
+            let existingCategories = try context.fetch(categoryFetchRequest)
+            let existingCategory = existingCategories.first
+            spendEntity.category = existingCategory
+            
             try context.save()
-            print("Spend saved successfully.")
             loadData()
+            loadCategories()
         } catch {
             print("Error saving spend: \(error)")
         }
@@ -69,8 +97,15 @@ class SpendsViewModel: ObservableObject {
         }
     }
     
-    var spendCategories: [(category: String, value: Double)] {
-        let categoryValues = Dictionary(grouping: spends, by: { $0.category }).mapValues { $0.reduce(0, { $0 + $1.value }) }
-        return categoryValues.sorted { $0.value > $1.value }.map { ($0.key, $0.value) }
+    var spendCategoriesValues: [(category: String, value: Double, color: String)] {
+        let spendCategories = Dictionary(grouping: spends, by: { $0.category.name }).mapValues { $0.reduce(0, { $0 + $1.value }) }
+        
+        return spendCategories.sorted { $0.value > $1.value }.compactMap { (key, value) -> (category: String, value: Double, color: String)? in
+            guard let category = spends.first(where: { $0.category.name == key })?.category else {
+                return nil
+            }
+            let color = category.color
+            return (category: key, value: value, color: color)
+        }
     }
 }

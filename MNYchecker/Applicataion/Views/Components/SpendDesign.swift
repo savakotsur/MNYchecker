@@ -11,12 +11,13 @@ struct SpendDesign: View {
     
     @State var title: String
     @State var value: Double
-    @State var category: String
+    @State var category: CategoryModel
     @State var date: Date
     
     var body: some View {
         HStack (alignment: .center) {
-                    Image(systemName: "gear")
+            Image(systemName: category.icon)
+                .foregroundColor(Color(category.color))
                         .imageScale(.large)
                     VStack (alignment: .leading) {
                         Text(title)

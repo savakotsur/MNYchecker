@@ -40,12 +40,16 @@ struct AddSpendView: View {
                     .padding(.horizontal, 30)
                 Text("Категория")
                     .padding(.horizontal, 35)
-                TextField("", text: $spendCategory)
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 10)
-                    .background(Color("ElementsColor"))
-                    .cornerRadius(15)
-                    .padding(.horizontal, 30)
+                Picker("Категория", selection: $spendCategory) {
+                    ForEach(spendsVM.categories) { category in
+                        Text(category.name).tag(category.name)
+                    }
+                }
+                .pickerStyle(.inline)
+                .padding(.horizontal, 15)
+                .background(Color("ElementsColor"))
+                .cornerRadius(15)
+                .padding(.horizontal, 30)
                 Text("Описание")
                     .padding(.horizontal, 35)
                 TextField("", text: $spendDescription, axis: .vertical)
@@ -60,7 +64,12 @@ struct AddSpendView: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        let spend = SpendModel(title: spendTitle, value: Double(spendValue)!, category: spendCategory, date: spendDate, description: spendDescription)
+                        
+                        var category = spendsVM.categories.first(where: { $0.name == spendCategory })
+                        if category == nil {
+                            category = spendsVM.categories.first
+                        }
+                        let spend = SpendModel(title: spendTitle, value: Double(spendValue)!, category: category!, date: spendDate, description: spendDescription)
                         spendsVM.insertSpend(spend)
                         dismiss()
                     })

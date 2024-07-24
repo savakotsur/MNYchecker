@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct SettingsView: View {
-//    let 
+    @State var categoryName = ""
     
     var body: some View {
-        Text("Настройки")
-    }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
+        VStack (alignment: .leading) {
+            Group {
+                TextFieldDesign(textName: "Наименование категории", textFieldBinding: $categoryName)
+                    .padding(.top, 20)
+            }
+        }
     }
 }

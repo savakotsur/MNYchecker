@@ -10,17 +10,25 @@ import SwiftUI
 struct SpendsView: View {
     
     @StateObject var spendsVM = SpendsViewModel();
+    @Namespace var namespace
     @State var isAddingSpend = false
     @State var isSettingsOpened = false
+    @State var isDetailsOpened = false
     @State var selectedSpend: SpendModel?
     
     var body: some View {
         VStack {
+            Button(action: {
+                withAnimation(.easeInOut) {
+                    isDetailsOpened.toggle()
+                }
+            }) {
+                DonutChart(categories: spendsVM.spendCategoriesValues)
+                    .matchedGeometryEffect(id: "mainchart", in: namespace)
+                    .foregroundColor(.black)
+            }
             
-            //Diagram with spends -- NOT READY YET
-            DonutChart(categories: spendsVM.spendCategories)
             
-            //Buttons "Settings" and "Add" -- MUST BE ON COMPONENTS
             HStack {
                 Spacer()
                 Button(action: {
@@ -90,11 +98,8 @@ struct SpendsView: View {
                     SpendDetails(spendsVM: spendsVM, spend: spend)
                 }
         }
-    }
-}
-    
-    struct SpendsView_Previews: PreviewProvider {
-        static var previews: some View {
-            SpendsView()
+        .fullScreenCover(isPresented: $isDetailsOpened) {
+            DetailsView(namespace: namespace, spendsVM: spendsVM)
         }
     }
+}
