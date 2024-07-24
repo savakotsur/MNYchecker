@@ -14,8 +14,8 @@ struct SpendModel: Identifiable {
     var value: Double // Сумма траты
     var category: CategoryModel // Категория траты
     var date: Date // Дата траты
-    var description: String // Описание траты 
-
+    var description: String // Описание траты
+    
     init(id: UUID = UUID(),
          title: String,
          value: Double,

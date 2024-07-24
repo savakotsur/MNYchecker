@@ -18,11 +18,12 @@ struct SpendDesign: View {
         HStack (alignment: .center) {
             Image(systemName: category.icon)
                 .foregroundColor(Color(category.color))
-                        .imageScale(.large)
-                    VStack (alignment: .leading) {
-                        Text(title)
-                            .fontWeight(.bold)
-                        Text(date.formatted(date: .abbreviated, time: .omitted))
+                .imageScale(.large)
+                .shadow(radius: 3)
+            VStack (alignment: .leading) {
+                Text(title)
+                    .fontWeight(.bold)
+                Text(date.formatted(date: .abbreviated, time: .omitted))
             }
             Spacer()
             Text(String(value) + "$")

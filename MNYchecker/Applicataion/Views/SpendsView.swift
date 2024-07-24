@@ -10,7 +10,6 @@ import SwiftUI
 struct SpendsView: View {
     
     @StateObject var spendsVM = SpendsViewModel();
-    @Namespace var namespace
     @State var isAddingSpend = false
     @State var isSettingsOpened = false
     @State var isDetailsOpened = false
@@ -24,10 +23,8 @@ struct SpendsView: View {
                 }
             }) {
                 DonutChart(categories: spendsVM.spendCategoriesValues)
-                    .matchedGeometryEffect(id: "mainchart", in: namespace)
                     .foregroundColor(.black)
             }
-            
             
             HStack {
                 Spacer()
@@ -47,7 +44,7 @@ struct SpendsView: View {
                 .background(Color("ElementsColor"))
                 .cornerRadius(100)
                 .sheet(isPresented: $isSettingsOpened) {
-                    SettingsView()
+                    SettingsView(spendsVM: spendsVM)
                 }
                 
                 Button(action: {
@@ -77,8 +74,9 @@ struct SpendsView: View {
                 if spendsVM.spends.isEmpty {
                     HStack (alignment: .center) {
                         Spacer()
-                        ProgressView()
-                            .frame(minWidth: 350, maxWidth: 500, minHeight: 570, maxHeight: 1000)
+                        Text("Добавьте свою первую трату, нажав на плюс или добавьте категорию, нажав на шестеренку!")
+                            .multilineTextAlignment(.center)
+                            .frame(minWidth: 350, maxWidth: 500, minHeight: 400, maxHeight: 500)
                             .background(Color("ElementsColor"))
                             .cornerRadius(20)
                     }
@@ -99,7 +97,7 @@ struct SpendsView: View {
                 }
         }
         .fullScreenCover(isPresented: $isDetailsOpened) {
-            DetailsView(namespace: namespace, spendsVM: spendsVM)
+            DetailsView(spendsVM: spendsVM)
         }
     }
 }

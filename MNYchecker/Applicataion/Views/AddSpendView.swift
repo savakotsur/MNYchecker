@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddSpendView: View {
     
-    @StateObject var spendsVM: SpendsViewModel
+    @ObservedObject var spendsVM: SpendsViewModel
     @Environment(\.dismiss) var dismiss
     @State private var spendTitle = ""
     @State private var spendValue = ""
@@ -94,9 +94,3 @@ struct AddSpendView: View {
         .padding(.vertical, 20)
     }
 }
-
-//struct AddSpendView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddSpendView()
-//    }
-//}

@@ -74,9 +74,24 @@ class SpendsViewModel: ObservableObject {
             
             try context.save()
             loadData()
-            loadCategories()
         } catch {
             print("Error saving spend: \(error)")
+        }
+    }
+    
+    func insertCategory(_ newCategory: CategoryModel) {
+        let categoryEntity = CategoryEntity(context: context)
+        categoryEntity.id = UUID()
+        categoryEntity.name = newCategory.name
+        categoryEntity.icon = newCategory.icon
+        categoryEntity.color = newCategory.color
+        
+        do {
+            try context.save()
+            print(newCategory)
+            loadCategories()
+        } catch {
+            print("Error saving category: \(error)")
         }
     }
     

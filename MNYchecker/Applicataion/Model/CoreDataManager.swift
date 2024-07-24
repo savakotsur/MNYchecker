@@ -10,9 +10,9 @@ import CoreData
 
 final class PersistenceController {
     static let shared = PersistenceController()
-
+    
     let container: NSPersistentContainer
-
+    
     init() {
         container = NSPersistentContainer(name: "SpendsModel")
         container.loadPersistentStores { storeDescription, error in
@@ -22,7 +22,7 @@ final class PersistenceController {
             self.addInitialCategoriesIfNeeded(context: self.container.viewContext)
         }
     }
-
+    
     private func addInitialCategoriesIfNeeded(context: NSManagedObjectContext) {
         let fetchRequest: NSFetchRequest<CategoryEntity> = CategoryEntity.fetchRequest()
         do {

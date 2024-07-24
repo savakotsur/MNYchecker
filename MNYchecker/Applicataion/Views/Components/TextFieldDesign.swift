@@ -24,9 +24,3 @@ struct TextFieldDesign: View {
         }
     }
 }
-
-//struct TextFieldDesign_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TextFieldDesign(textName: "Наименование", textFieldBinding: "Хуй")
-//    }
-//}

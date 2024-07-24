@@ -10,7 +10,7 @@ import SwiftUI
 struct SpendDetails: View {
     
     @Environment(\.dismiss) var dismiss
-    @StateObject var spendsVM: SpendsViewModel
+    @ObservedObject var spendsVM: SpendsViewModel
     var spend : SpendModel
     
     var body: some View {
@@ -19,10 +19,13 @@ struct SpendDetails: View {
                 Image(systemName: spend.category.icon)
                     .foregroundColor(Color(spend.category.color))
                     .imageScale(.large)
+                    .shadow(radius: 3)
                 VStack (alignment: .leading) {
                     Text(spend.title)
                         .fontWeight(.bold)
                     Text(spend.date.formatted(date: .abbreviated, time: .omitted))
+                    Text(spend.category.name)
+                        .foregroundColor(.gray)
                 }
                 Spacer()
                 Text(String(spend.value) + "$")
@@ -39,26 +42,20 @@ struct SpendDetails: View {
                     spendsVM.deleteSpend(spend)
                     dismiss()
                 }) {
-                Label {
-                    Text("Delete")
-                } icon: {
-                    Image(systemName: "trash")
-                        .imageScale(.large)
-                        .foregroundColor(Color.red)
+                    Label {
+                        Text("Delete")
+                    } icon: {
+                        Image(systemName: "trash")
+                            .imageScale(.large)
+                            .foregroundColor(Color.red)
+                    }
+                    .labelStyle(.iconOnly)
                 }
-                .labelStyle(.iconOnly)
-            }
-            .frame(width: screenSize.width / 6.0, height: screenSize.height / 24.0)
-            .background(Color("ElementsColor"))
-            .cornerRadius(100)
-            .padding(.horizontal, 20)
+                .frame(width: screenSize.width / 6.0, height: screenSize.height / 24.0)
+                .background(Color("ElementsColor"))
+                .cornerRadius(100)
+                .padding(.horizontal, 20)
             }
         }
     }
 }
-
-//struct SpendDetails_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SpendDetails()
-//    }
-//}
