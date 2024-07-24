@@ -13,6 +13,7 @@ struct DetailsView: View {
     @State private var selectedMonth: Int = Calendar.current.component(.month, from: Date())
     @State private var selectedYear: Int = Calendar.current.component(.year, from: Date())
     @Environment(\.dismiss) var dismiss
+    let rows = [GridItem(.fixed(30)), GridItem(.fixed(30))]
     
     var body: some View {
         ZStack (alignment: .topLeading) {
@@ -35,6 +36,20 @@ struct DetailsView: View {
                     .onAppear {
                         detailsVM.updateSpendCategoriesValues(selectedMonth: selectedMonth, selectedYear: selectedYear, spends: spendsVM.spends)
                     }
+                LazyHGrid(rows: rows) {
+                    ForEach(detailsVM.spendCategoriesValuesForSelectedMonth.indices, id: \.self) { index in
+                        HStack {
+                            Text(detailsVM.spendCategoriesValuesForSelectedMonth[index].category)
+                                .font(.caption)
+                                .padding(15)
+                                .frame(maxWidth: 130, minHeight: 20)
+                                .background(Color(detailsVM.spendCategoriesValuesForSelectedMonth[index].color))
+                                .cornerRadius(15)
+                        }
+                    }
+                }
+                .padding(.bottom, 360)
+                Spacer()
                 HStack (alignment: .center) {
                     Spacer()
                     Picker("Месяц", selection: $selectedMonth) {
@@ -59,7 +74,6 @@ struct DetailsView: View {
                     
                     Spacer()
                 }
-                Spacer()
             }
         }
     }
