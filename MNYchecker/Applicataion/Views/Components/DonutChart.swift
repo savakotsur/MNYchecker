@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Charts
 
 struct DonutChart: View {
     let categories: [(category: String, value: Double, color: String)]
